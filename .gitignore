@@ -1,7 +1,0 @@
-**/*.properties
-/jars
-**/*.class
-.settings
-.project
-.classpath
-**/.DS_Store
