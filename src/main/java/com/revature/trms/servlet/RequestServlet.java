@@ -41,26 +41,23 @@ public class RequestServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 
 		try {
-			if (parameters.isEmpty()) {
-//				Employee me = (Employee) session.getAttribute("employee");
-				result = RequestDataAccessObject.selectSummary(3);
-				LoggingUtil.logInfo("doGet() Get my requests successful");
-			} else {
-				if (parameters.containsKey("requestId")) {
-					List<Object> list = new ArrayList<Object>();
-					request = RequestDataAccessObject.select(Integer.parseInt(parameters.get("requestId")[0]));
-					event = EventDataAccessObject.select(request.getEventId());
-					employee = EmployeeDataAccessObject.select(request.getEmployeeId());
+			if (parameters.containsKey("requestId")) {
+				List<Object> list = new ArrayList<Object>();
+				request = RequestDataAccessObject.select(Integer.parseInt(parameters.get("requestId")[0]));
+				event = EventDataAccessObject.select(request.getEventId());
+				employee = EmployeeDataAccessObject.select(request.getEmployeeId());
 
-					list.add(request);
-					list.add(event);
-					list.add(employee);
-					result = list;
-					LoggingUtil.logInfo("doGet() Get Request successful");
-				} else if (parameters.containsKey("employeeId")) {
-					result = RequestDataAccessObject.selectHandledSummary(Integer.parseInt(parameters.get("employeeId")[0]));
-					LoggingUtil.logInfo("doGet() Get pending requests successful");
-				}
+				list.add(request);
+				list.add(event);
+				list.add(employee);
+				result = list;
+				LoggingUtil.logInfo("doGet() Get Request successful");
+			} else if (parameters.containsKey("employeeId")) {
+				result = RequestDataAccessObject.selectHandledSummary(Integer.parseInt(parameters.get("employeeId")[0]));
+				LoggingUtil.logInfo("doGet() Get pending requests successful");
+			} else if (parameters.containsKey("myId")) {
+				result = RequestDataAccessObject.selectSummary(Integer.parseInt(parameters.get("myId")[0]));
+				LoggingUtil.logInfo("doGet() Get my requests successful");
 			}
 
 			writer.print(result != null ? mapper.writeValueAsString(result) : STATUS_404);

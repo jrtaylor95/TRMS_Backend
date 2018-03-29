@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.revature.trms.pojo.Employee;
@@ -50,7 +49,7 @@ public class UtilDataAccessObject {
 				ResultSet set = statement.executeQuery();
 				
 				while (set.next()) {
-					percentages.put(set.getString(2), set.getDouble(3));
+					percentages.put(set.getString(1), set.getDouble(3));
 				}
 			}
 		}
