@@ -14,8 +14,9 @@ public class Event {
 		event.setType(set.getInt(EVENT_TYPE));
 		event.setDate(set.getDate(EVENT_DATE));
 		event.setLocation(set.getString(EVENT_LOCATION));
+		event.setDescription(EVENT_DESCRIPTION);
 		event.setCost(set.getDouble(EVENT_COST));
-		event.setGradeFormat(set.getString(EVENT_GRADE_FORMAT));
+		event.setGradingFormat(set.getString(EVENT_GRADE_FORMAT));
 		event.setPassingGrade(set.getString(EVENT_PASSING_GRADE));
 		
 		return event;
@@ -25,8 +26,9 @@ public class Event {
 	private int type;
 	private Date date;
 	private String location;
+	private String description;
 	private double cost;
-	private String gradeFormat;
+	private String gradingFormat;
 	private String passingGrade;
 	
 	public int getId() {
@@ -61,6 +63,14 @@ public class Event {
 		this.location = location;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public double getCost() {
 		return cost;
 	}
@@ -69,12 +79,12 @@ public class Event {
 		this.cost = cost;
 	}
 	
-	public String getGradeFormat() {
-		return gradeFormat;
+	public String getGradingFormat() {
+		return gradingFormat;
 	}
 	
-	public void setGradeFormat(String gradeFormat) {
-		this.gradeFormat = gradeFormat;
+	public void setGradingFormat(String gradeFormat) {
+		this.gradingFormat = gradeFormat;
 	}
 	
 	public String getPassingGrade() {

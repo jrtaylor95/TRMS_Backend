@@ -17,7 +17,7 @@ import com.revature.util.ConnectionFactory;
 
 public class RequestDataAccessObject {
 	public static void create(Request request, Event event) throws SQLException {
-		String sql = String.format("call INSERT_REQUEST(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		String sql = String.format("call INSERT_REQUEST(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 			try (CallableStatement statement = connection.prepareCall(sql)) {
@@ -28,9 +28,10 @@ public class RequestDataAccessObject {
 				statement.setInt(5, event.getType());
 				statement.setDate(6,  event.getDate());
 				statement.setString(7, event.getLocation());
-				statement.setDouble(8, event.getCost());
-				statement.setString(9, event.getGradeFormat());
-				statement.setString(10, event.getPassingGrade());
+				statement.setString(8, event.getDescription());
+				statement.setDouble(9, event.getCost());
+				statement.setString(10, event.getGradingFormat());
+				statement.setString(11, event.getPassingGrade());
 
 				statement.executeUpdate();
 			}
